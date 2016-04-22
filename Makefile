@@ -1,15 +1,17 @@
-APPLICATION_NAME := hw5
 CC := g++
 CFLAGS := -Wall -Wextra -Wpedantic -O2
 LFLAGS := -lglut -lGLU -lGL -lm
+PROGS := plot2d
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp, %.o, $(SRC))
 
 .PHONY : all clean rebuild
 
-all : $(APPLICATION_NAME)
+all : $(PROGS)
 
-$(APPLICATION_NAME) : $(OBJ)
+plot2d : plot2d.o
+
+% : %.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LFLAGS)
 
 $(OBJ) : $(SRC)
@@ -18,7 +20,7 @@ $(OBJ) : $(SRC)
 	$(CC) $(CFLAGS) -c $<
 
 clean :
-	\rm -f $(APPLICATION_NAME) $(APPLICATION_NAME).hex $(OBJ)
+	rm -f $(PROGS) $(OBJ)
 
 rebuild :
 	make clean
