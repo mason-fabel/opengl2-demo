@@ -9,9 +9,11 @@ echo "DONE"
 
 echo "Plot the function z = 5cos(2x + 3sin(2y)) e^(-n(x^2 + y^2))"
 echo "  using GL_QUADS..."
-echo "  not implemented"
+./plot3d -w 1024 -h 768 -m quads -d 50 -o
+./plot3d -w 1024 -h 768 -m quads -d 200
 echo "  using GL_TRIANGLES..."
-echo "  not implemented"
+./plot3d -w 1024 -h 768 -m triangles -d 50 -o
+./plot3d -w 1024 -h 768 -m triangles -d 200
 echo "DONE"
 
 echo "Render a Rubik's cube"
