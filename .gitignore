@@ -1,6 +1,9 @@
 # Binary files
 *.o
 plot2d
+plot3d
+rubik
+rubik20
 
 # Vim temp files
 *.swp

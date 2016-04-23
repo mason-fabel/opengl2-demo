@@ -19,11 +19,11 @@ float WIDTH = 800;
 float HEIGHT = 600;
 
 void init(int argc, char** argv);
+void print3D(float x, float y, char* format, ...);
 void render(void);
-float funcAtX(float x);
 void render_callback(void);
 void resize_callback(int w, int h);
-void print3D(float x, float y, char* format, ...);
+float funcAtX(float x);
 
 int main(int argc, char** argv) {
 	init(argc, argv);
