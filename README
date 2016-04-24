@@ -1,0 +1,40 @@
+OVERVIEW
+========
+
+A series of demos showcasing the basic use of OpenGL 2.
+
+
+DEPENDENCIES
+============
+
+This project requires OpenGL 2, GLU, and GLUT. On debian-based systems, these
+utilities can all be installed through the freeglut3-dev package.
+
+
+COMPILING
+=========
+
+This package places the needed headers at GL/glut.h. This behavior is not
+necessarily consistent across all systems, and so the appropriate #include
+statements may need to be modified by hand before compiling.
+
+This project is built using make. By default, all demos will be compiled when
+make is run.
+
+
+RUNNING
+=======
+
+This project is run via the included bash script.
+
+Alternatively, each individual demo can be run by running the appropriate
+executable.
+
+Each demo can be configured via commandline options. For a complete list of
+options, run a demo with the '-?' option.
+
+
+CREDITS
+=======
+
+Written by Mason Fabel on 23 April 2016.
