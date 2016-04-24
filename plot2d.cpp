@@ -48,14 +48,14 @@ void init(int argc, char** argv) {
 
     glutInit(&argc, argv);
 
-	while ((c = getopt(argc, argv, "?d:h:m:w:")) != -1) {
+	while ((c = getopt(argc, argv, "w:h:d:m:?")) != -1) {
 		switch (c) {
-			case 'd':
+			case 'w':
 				val = atoi(optarg);
 				if (val > 0) {
-					SUBDIVISIONS = atoi(optarg);
+					WIDTH = atoi(optarg);
 				} else {
-					fprintf(stderr, "invalid division: %i\n", val);
+					fprintf(stderr, "invalid width: %i\n", val);
 					exit(1);
 				}
 				break;
@@ -68,12 +68,12 @@ void init(int argc, char** argv) {
 					exit(1);
 				}
 				break;
-			case 'w':
+			case 'd':
 				val = atoi(optarg);
 				if (val > 0) {
-					WIDTH = atoi(optarg);
+					SUBDIVISIONS = atoi(optarg);
 				} else {
-					fprintf(stderr, "invalid width: %i\n", val);
+					fprintf(stderr, "invalid division: %i\n", val);
 					exit(1);
 				}
 				break;
@@ -88,12 +88,12 @@ void init(int argc, char** argv) {
 				}
 				break;
 			case '?':
-				fprintf(stdout, "Usage: %s [-d DIV] [-w WIDTH]", argv[0]);
-				fprintf(stdout, " [-h HEIGHT] [-m MODE]\n");
+				fprintf(stdout, "Usage: %s [-w WIDTH] [-h HEIGHT]", argv[0]);
+				fprintf(stdout, " [-d DIV] [-m MODE]\n");
 				fprintf(stdout, "\n");
-				fprintf(stdout, "  -d DIV    render in DIV intervals\n");
 				fprintf(stdout, "  -w WIDTH  set window width to WIDTH\n");
 				fprintf(stdout, "  -h HEIGHT set window height to HEIGHT\n");
+				fprintf(stdout, "  -d DIV    render in DIV intervals\n");
 				fprintf(stdout, "  -m MODE   set the render mode to MODE;");
 				fprintf(stdout, " MODE is 'points' or 'lines'\n");
 				fprintf(stdout, "  -?        display help and exit\n");
