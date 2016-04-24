@@ -1,7 +1,7 @@
 CC := g++
 CFLAGS := -Wall -Wextra -Wpedantic -O2
 LFLAGS := -lglut -lGLU -lGL -lm
-PROGS := plot2d plot3d rubik
+PROGS := plot2d plot3d rubik rubik20
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp, %.o, $(SRC))
 

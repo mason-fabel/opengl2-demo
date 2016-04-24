@@ -87,7 +87,7 @@ void init(int argc, char** argv) {
 	char c;
 	int val;
 
-    glutInit(&argc, argv);
+	glutInit(&argc, argv);
 
 	while ((c = getopt(argc, argv, "w:h:d:m:o?")) != -1) {
 		switch (c) {
@@ -150,25 +150,25 @@ void init(int argc, char** argv) {
 	X_INTERVAL = (X_MAX - X_MIN) / SUBDIVISIONS;
 	Y_INTERVAL = (Y_MAX - Y_MIN) / SUBDIVISIONS;
 
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 
-    glutInitWindowSize(WIDTH, HEIGHT);
-    glutInitWindowPosition(200, 200);
+	glutInitWindowSize(WIDTH, HEIGHT);
+	glutInitWindowPosition(200, 200);
 
-    glutCreateWindow("CS324 HW5 - fabe0940");
+	glutCreateWindow("CS324 HW5 - fabe0940");
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClearColor(0.0, 0.0, 0.0, 0.0);
 
-    glShadeModel(GL_FLAT);
+	glShadeModel(GL_FLAT);
 
-    glutDisplayFunc(render_callback);
-    glutReshapeFunc(resize_callback);
+	glutDisplayFunc(render_callback);
+	glutReshapeFunc(resize_callback);
 
 	return;
 }
 
 void render(void) {
-    glutMainLoop();
+	glutMainLoop();
 
 	return;
 }
@@ -208,7 +208,7 @@ void render_callback(void) {
 		0.0, 1.0, 0.0
 	);
 
-    glColor3f(1.0, 1.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);
 	print3D(X_MIN, Y_MAX - 1.0, 0.0, (char*) "Mason Fabel");
 	print3D(X_MIN, Y_MAX - 1.5, 0.0, (char*) "CS324");
 	print3D(X_MIN, Y_MAX - 2.0, 0.0, (char*) "Assignment 5");
@@ -221,10 +221,10 @@ void render_callback(void) {
 		0.0, 1.0, 0.0
 	);
 
-    glPushMatrix();
+	glPushMatrix();
 
 	glBegin(GL_LINES);
-    glColor3f(1.0, 1.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);
 	glVertex3f(X_MIN, 0.0, 0.0);
 	glVertex3f(X_MAX, 0.0, 0.0);
 	glVertex3f(0.0, Y_MIN, 0.0);
@@ -240,7 +240,7 @@ void render_callback(void) {
 	print3D(0.0, 0.0, Y_MIN - 1, (char*) "-z");
 	print3D(0.0, 0.0, Y_MAX + 1, (char*) "+z");
 
-    glColor3f(0.1, 0.1, 0.1);
+	glColor3f(0.1, 0.1, 0.1);
 	switch (MODE) {
 		case MODE_QUADS:
 			for (i = 0; i < SUBDIVISIONS - 1; i++) {
@@ -315,11 +315,11 @@ void render_callback(void) {
 			break;
 	}
 
-    glPopMatrix();
+	glPopMatrix();
 
-    glutSwapBuffers();
+	glutSwapBuffers();
 
-    glutPostRedisplay();
+	glutPostRedisplay();
 
 	return;
 }

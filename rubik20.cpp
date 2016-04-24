@@ -190,12 +190,16 @@ void resize_callback(int w, int h) {
 }
 
 void render_callback(void) {
+	int i;
+	int j;
+	int k;
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glViewport(0.0, 0.0, WIDTH, HEIGHT);
 
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(90.0, WIDTH / HEIGHT, 1, 20);
+	gluPerspective(90.0, WIDTH / HEIGHT, 1, 10);
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -210,17 +214,27 @@ void render_callback(void) {
 	print3D(-5.0, 3.5, 0.0, (char*) "CS324");
 	print3D(-5.0, 3.0, 0.0, (char*) "Assignment 5");
 
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(60.0, WIDTH / HEIGHT, 1, 1000);
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(
-		1.0, 4.0, 8.0,
-		0.0, 0.0, 0.0,
+		125.0, 150.0, 175.0,
+		50.0, 50.0, 50.0,
 		0.0, 1.0, 0.0
 	);
 
 	glPushMatrix();
 
-	drawRubik(0.0, 0.0, 0.0, 1.0, GAP);
+	for (i = 0; i < 20; i++) {
+		for (j = 0; j < 20; j++) {
+			for (k = 20; k >= 0; k--) {
+				drawRubik(k * 5, i * 5, j * 5, 1.0, GAP);
+			}
+		}
+	}
 
 	glPopMatrix();
 

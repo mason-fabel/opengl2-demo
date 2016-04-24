@@ -1,5 +1,11 @@
 #!/bin/sh
 
+make 
+
+if [ $? -ne 0 ] ; then
+	exit 1
+fi
+
 echo "Plot the function y = e^(-0.2x) sin(3x)"
 echo "  using GL_POINTS..."
 ./plot2d -w 1024 -h 768 -m points -d 75
@@ -26,5 +32,6 @@ echo "  with gaps..."
 echo "DONE"
 
 echo "Render a 20x20x20 grid of Rubik's cubes"
-echo "  not implemented"
+./rubik20 -w 1024 -h 768 -g 0.1 -o
+./rubik20 -w 1024 -h 768 -g 0.1
 echo "DONE"

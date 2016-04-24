@@ -46,7 +46,7 @@ void init(int argc, char** argv) {
 	char c;
 	int val;
 
-    glutInit(&argc, argv);
+	glutInit(&argc, argv);
 
 	while ((c = getopt(argc, argv, "w:h:d:m:?")) != -1) {
 		switch (c) {
@@ -104,25 +104,25 @@ void init(int argc, char** argv) {
 
 	INTERVAL = (X_MAX - X_MIN) / SUBDIVISIONS;
 
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 
-    glutInitWindowSize(WIDTH, HEIGHT);
-    glutInitWindowPosition(200, 200);
+	glutInitWindowSize(WIDTH, HEIGHT);
+	glutInitWindowPosition(200, 200);
 
-    glutCreateWindow("CS324 HW5 - fabe0940");
+	glutCreateWindow("CS324 HW5 - fabe0940");
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClearColor(0.0, 0.0, 0.0, 0.0);
 
-    glShadeModel(GL_FLAT);
+	glShadeModel(GL_FLAT);
 
-    glutDisplayFunc(render_callback);
-    glutReshapeFunc(resize_callback);
+	glutDisplayFunc(render_callback);
+	glutReshapeFunc(resize_callback);
 
 	return;
 }
 
 void render(void) {
-    glutMainLoop();
+	glutMainLoop();
 
 	return;
 }
@@ -156,14 +156,14 @@ void render_callback(void) {
 		0.0, 1.0, 0.0
 	);
 
-    glPushMatrix();
+	glPushMatrix();
 
-    glColor3f(1.0, 1.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);
 	print3D(X_MIN, Y_MAX - 0.0, (char*) "Mason Fabel");
 	print3D(X_MIN, Y_MAX - 0.5, (char*) "CS324");
 	print3D(X_MIN, Y_MAX - 1.0, (char*) "Assignment 5");
 
-    glColor3f(0.5, 0.5, 0.5);
+	glColor3f(0.5, 0.5, 0.5);
 	glBegin(GL_LINES);
 	glVertex3f(X_MIN, 0.0, 0.0);
 	glVertex3f(X_MAX, 0.0, 0.0);
@@ -171,13 +171,13 @@ void render_callback(void) {
 	glVertex3f(0.0, Y_MAX, 0.0);
 	glEnd();
 
-    glColor3f(1.0, 1.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);
 	print3D(X_MIN, 0.0, (char*) "-x");
 	print3D(X_MAX, 0.0, (char*) "+x");
 	print3D(0.0, Y_MIN, (char*) "-y");
 	print3D(0.0, Y_MAX, (char*) "+y");
 
-    glColor3f(1.0, 1.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);
 	switch (MODE) {
 		case MODE_LINES:
 			glBegin(GL_LINES);
@@ -202,11 +202,11 @@ void render_callback(void) {
 			glEnd();
 	}
 
-    glPopMatrix();
+	glPopMatrix();
 
-    glutSwapBuffers();
+	glutSwapBuffers();
 
-    glutPostRedisplay();
+	glutPostRedisplay();
 
 	return;
 }
