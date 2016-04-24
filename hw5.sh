@@ -18,9 +18,11 @@ echo "DONE"
 
 echo "Render a Rubik's cube"
 echo "  without gaps..."
-echo "  not implemented"
+./rubik -w 1024 -h 768 -g 0.0 -o
+./rubik -w 1024 -h 768 -g 0.0
 echo "  with gaps..."
-echo "  not implemented"
+./rubik -w 1024 -h 768 -g 0.1 -o
+./rubik -w 1024 -h 768 -g 0.1
 echo "DONE"
 
 echo "Render a 20x20x20 grid of Rubik's cubes"

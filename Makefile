@@ -1,15 +1,13 @@
 CC := g++
 CFLAGS := -Wall -Wextra -Wpedantic -O2
 LFLAGS := -lglut -lGLU -lGL -lm
-PROGS := plot2d plot3d
+PROGS := plot2d plot3d rubik
 SRC := $(wildcard *.cpp)
 OBJ := $(patsubst %.cpp, %.o, $(SRC))
 
 .PHONY : all clean rebuild
 
 all : $(PROGS)
-
-plot2d : plot2d.o
 
 % : %.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LFLAGS)
