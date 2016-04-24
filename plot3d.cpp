@@ -87,16 +87,16 @@ void init(int argc, char** argv) {
 	char c;
 	int val;
 
-    glutInit(&argc, argv);
+	glutInit(&argc, argv);
 
-	while ((c = getopt(argc, argv, "?d:h:m:ow:")) != -1) {
+	while ((c = getopt(argc, argv, "w:h:d:m:o?")) != -1) {
 		switch (c) {
-			case 'd':
+			case 'w':
 				val = atoi(optarg);
 				if (val > 0) {
-					SUBDIVISIONS = atoi(optarg);
+					WIDTH = atoi(optarg);
 				} else {
-					fprintf(stderr, "invalid division: %i\n", val);
+					fprintf(stderr, "invalid width: %i\n", val);
 					exit(1);
 				}
 				break;
@@ -109,17 +109,14 @@ void init(int argc, char** argv) {
 					exit(1);
 				}
 				break;
-			case 'w':
+			case 'd':
 				val = atoi(optarg);
 				if (val > 0) {
-					WIDTH = atoi(optarg);
+					SUBDIVISIONS = atoi(optarg);
 				} else {
-					fprintf(stderr, "invalid width: %i\n", val);
+					fprintf(stderr, "invalid division: %i\n", val);
 					exit(1);
 				}
-				break;
-			case 'o':
-				WIREFRAME = 1;
 				break;
 			case 'm':
 				if (!strcmp("quads", optarg)) {
@@ -131,16 +128,19 @@ void init(int argc, char** argv) {
 					exit(1);
 				}
 				break;
+			case 'o':
+				WIREFRAME = 1;
+				break;
 			case '?':
-				fprintf(stdout, "Usage: %s [-d DIV] [-w WIDTH]", argv[0]);
-				fprintf(stdout, " [-h HEIGHT] [-m MODE]\n");
+				fprintf(stdout, "Usage: %s [-w WIDTH] [-h HEIGHT]", argv[0]);
+				fprintf(stdout, " [-d DIV] [-m MODE] [-o]\n");
 				fprintf(stdout, "\n");
 				fprintf(stdout, "  -d DIV    render in DIV intervals\n");
 				fprintf(stdout, "  -w WIDTH  set window width to WIDTH\n");
 				fprintf(stdout, "  -h HEIGHT set window height to HEIGHT\n");
-				fprintf(stdout, "  -o        enable wireframe mode\n");
 				fprintf(stdout, "  -m MODE   set the render mode to MODE;");
 				fprintf(stdout, " MODE is 'points' or 'lines'\n");
+				fprintf(stdout, "  -o        enable outline mode\n");
 				fprintf(stdout, "  -?        display help and exit\n");
 				exit(0);
 				break;
@@ -150,25 +150,25 @@ void init(int argc, char** argv) {
 	X_INTERVAL = (X_MAX - X_MIN) / SUBDIVISIONS;
 	Y_INTERVAL = (Y_MAX - Y_MIN) / SUBDIVISIONS;
 
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 
-    glutInitWindowSize(WIDTH, HEIGHT);
-    glutInitWindowPosition(200, 200);
+	glutInitWindowSize(WIDTH, HEIGHT);
+	glutInitWindowPosition(200, 200);
 
-    glutCreateWindow("CS324 HW5 - fabe0940");
+	glutCreateWindow("CS324 HW5 - fabe0940");
 
-    glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClearColor(0.0, 0.0, 0.0, 0.0);
 
-    glShadeModel(GL_FLAT);
+	glShadeModel(GL_FLAT);
 
-    glutDisplayFunc(render_callback);
-    glutReshapeFunc(resize_callback);
+	glutDisplayFunc(render_callback);
+	glutReshapeFunc(resize_callback);
 
 	return;
 }
 
 void render(void) {
-    glutMainLoop();
+	glutMainLoop();
 
 	return;
 }
@@ -208,7 +208,7 @@ void render_callback(void) {
 		0.0, 1.0, 0.0
 	);
 
-    glColor3f(1.0, 1.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);
 	print3D(X_MIN, Y_MAX - 1.0, 0.0, (char*) "Mason Fabel");
 	print3D(X_MIN, Y_MAX - 1.5, 0.0, (char*) "CS324");
 	print3D(X_MIN, Y_MAX - 2.0, 0.0, (char*) "Assignment 5");
@@ -216,15 +216,15 @@ void render_callback(void) {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	gluLookAt(
-		1.0, 4.0, 8.0,
+		5.0, 2.0, 10.0,
 		0.0, 0.0, 0.0,
 		0.0, 1.0, 0.0
 	);
 
-    glPushMatrix();
+	glPushMatrix();
 
 	glBegin(GL_LINES);
-    glColor3f(1.0, 1.0, 1.0);
+	glColor3f(1.0, 1.0, 1.0);
 	glVertex3f(X_MIN, 0.0, 0.0);
 	glVertex3f(X_MAX, 0.0, 0.0);
 	glVertex3f(0.0, Y_MIN, 0.0);
@@ -240,7 +240,7 @@ void render_callback(void) {
 	print3D(0.0, 0.0, Y_MIN - 1, (char*) "-z");
 	print3D(0.0, 0.0, Y_MAX + 1, (char*) "+z");
 
-    glColor3f(0.1, 0.1, 0.1);
+	glColor3f(0.1, 0.1, 0.1);
 	switch (MODE) {
 		case MODE_QUADS:
 			for (i = 0; i < SUBDIVISIONS - 1; i++) {
@@ -315,11 +315,11 @@ void render_callback(void) {
 			break;
 	}
 
-    glPopMatrix();
+	glPopMatrix();
 
-    glutSwapBuffers();
+	glutSwapBuffers();
 
-    glutPostRedisplay();
+	glutPostRedisplay();
 
 	return;
 }
